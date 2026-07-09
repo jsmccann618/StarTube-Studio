@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1, user-scalable=no, viewport-fit=cover">
+<title>StarTube Studio</title>
+<meta name="description" content="A pretend creator studio for making videos.">
+
+<!-- PWA -->
+<link rel="manifest" href="manifest.json">
+<meta name="theme-color" content="#FF5C7A">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="apple-mobile-web-app-title" content="StarTube">
+<link rel="apple-touch-icon" href="icons/icon-180.png">
+<link rel="icon" href="icons/favicon-32.png">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@500;700;800&family=Nunito:wght@400;600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="styles.css">
+</head>
+<body>
+<div id="app">
+
+  <header class="top">
+    <div class="brand">
+      <div class="mark">🎬</div>
+      <div class="name">Star<span>Tube</span></div>
+    </div>
+  </header>
+
+  <div class="channel-strip">
+    <div class="avatar-ring">
+      <svg width="56" height="56"><circle cx="28" cy="28" r="25" stroke="#DCEFE6" stroke-width="4" fill="none"/></svg>
+      <div class="avatar-circle" id="avatarEmoji">🌟</div>
+    </div>
+    <div class="channel-info">
+      <div class="channel-name-row">
+        <div class="channel-name" id="channelNameDisplay">My Channel</div>
+        <span class="edit-pencil">✏️</span>
+      </div>
+      <div class="sub-count"><b id="subCountNum">3</b> subscribers</div>
+    </div>
+  </div>
+
+  <nav class="tabs">
+    <button id="tabHomeBtn" class="active">🏠 Home</button>
+    <button id="tabRecordBtn">🔴 Record</button>
+  </nav>
+
+  <main>
+    <section id="homeView">
+      <div id="emptyState" class="empty-state">
+        <div class="big-emoji">📹</div>
+        <h3>No videos yet!</h3>
+        <p>Hit record and make your first video.<br>Effects, likes, and subscribers await ✨</p>
+        <button class="new-video-btn" id="emptyRecordBtn" style="max-width:220px;margin:0 auto;">Start Recording</button>
+      </div>
+      <div id="videoGrid" class="video-grid" style="display:none;"></div>
+      <div class="storage-note" id="storageNote"></div>
+    </section>
+
+    <section id="recordView" hidden>
+      <div class="viewfinder-wrap" id="viewfinderWrap">
+        <canvas id="camCanvas"></canvas>
+        <div class="corner tl"></div><div class="corner tr"></div>
+        <div class="corner bl"></div><div class="corner br"></div>
+        <div class="rec-timer" id="recTimer"><span class="rec-dot"></span><span id="recTimerText">0:00</span></div>
+        <div class="cam-status" id="camStatus">Tap "Allow" to turn on your camera 🎥</div>
+      </div>
+
+      <div class="effect-row" id="effectRow"></div>
+
+      <div class="record-controls">
+        <div style="width:48px;"></div>
+        <div class="shutter" id="shutterBtn"><div class="inner"></div></div>
+        <button class="switch-cam" id="switchCamBtn" title="Flip camera">🔄</button>
+      </div>
+      <p class="hint">Videos save right on this iPad — no internet needed.</p>
+
+      <div id="previewWrap" class="preview-wrap" style="display:none;">
+        <video id="previewVideo" controls playsinline></video>
+        <div class="publish-form">
+          <input type="text" id="titleInput" placeholder="Give your video a title..." maxlength="60">
+          <div class="btn-row">
+            <button class="btn btn-ghost" id="discardBtn">Discard</button>
+            <button class="btn btn-primary" id="publishBtn">Publish 🚀</button>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+</div>
+
+<div id="watchOverlay">
+  <div class="watch-inner">
+    <div class="watch-topbar">
+      <button class="close-btn" id="deleteVideoBtn" title="Delete video">🗑️</button>
+      <button class="close-btn" id="closeWatchBtn">✕</button>
+    </div>
+    <video id="watchVideo" class="watch-video" controls autoplay playsinline></video>
+    <div class="watch-body">
+      <h2 class="watch-title" id="watchTitle"></h2>
+      <div class="watch-views" id="watchViews"></div>
+
+      <div class="watch-channel-row">
+        <div class="avatar-ring"><div class="avatar-circle" id="watchAvatar">🌟</div></div>
+        <div class="wc-info">
+          <div class="wc-name" id="watchChannelName"></div>
+          <div class="wc-subs" id="watchSubs"></div>
+        </div>
+        <button class="sub-btn" id="watchSubBtn">Subscribe</button>
+      </div>
+
+      <div class="engage-row">
+        <button class="like-btn" id="watchLikeBtn"><span class="heart">🤍</span><span id="watchLikeCount">0</span></button>
+      </div>
+
+      <h3 class="comments-title">💬 Comments</h3>
+      <div id="commentsList"></div>
+    </div>
+  </div>
+</div>
+
+<div class="toast" id="toast"></div>
+
+<div id="loadingScreen">
+  <div class="loading-mark">🎬</div>
+  <div class="loading-text">Loading your studio...</div>
+</div>
+
+<script src="app.js"></script>
+</body>
+</html>
