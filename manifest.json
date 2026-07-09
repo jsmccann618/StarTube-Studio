@@ -1,0 +1,15 @@
+{
+  "name": "StarTube Studio",
+  "short_name": "StarTube",
+  "description": "A pretend creator studio for making videos, adding effects, and getting fake-famous.",
+  "start_url": "/",
+  "scope": "/",
+  "display": "standalone",
+  "orientation": "portrait",
+  "background_color": "#EAFBF3",
+  "theme_color": "#FF5C7A",
+  "icons": [
+    { "src": "icons/icon-192.png", "sizes": "192x192", "type": "image/png", "purpose": "any" },
+    { "src": "icons/icon-512.png", "sizes": "512x512", "type": "image/png", "purpose": "any" }
+  ]
+}
